@@ -66,13 +66,49 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+    <form @submit.prevent="createuser" @keydown="form.onKeydown($event)">
       <div class="modal-body">
-        ...
+       <div class="form-group">
+        <input v-model="form.name" type="text" name="name" placeholder="name"
+            class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+        <has-error :form="form" field="name"></has-error>
+        </div>
+
+        <div class="form-group">
+        <input v-model="form.email" type="email" name="email" placeholder="Email"
+            class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+        <has-error :form="form" field="email"></has-error>
+        </div>
+
+        <div class="form-group">
+        <textarea v-model="form.bio" type="text" name="bio" placeholder="Bio"
+            class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
+        <has-error :form="form" field="bio"></has-error>
+        </div>
+
+         <div class="form-group">
+            <select v-model="form.type" name="type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
+            <option value="">Select Role</option>
+            <option value="Adim">Admin</option>
+            <option value="User">User</option>
+            <option value="Author">Author</option>
+            </select>
+            <has-error :form="form" field="type"></has-error>
+        </div>
+
+        <div class="form-group">
+        <input v-model="form.password" type="password" name="password" placeholder="password"
+            class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+        <has-error :form="form" field="password"></has-error>
+        </div>
+
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Create user</button>
       </div>
+     </form>
     </div>
   </div>
 </div>
@@ -80,7 +116,31 @@
 </template>
 
 <script>
+import { Form} from 'vform'
+
+
 export default {
+  data () {
+    return {
+      // Create a new form instance
+      form: new Form({
+        name: '',
+        email: '',
+        type: '',
+        bio: '',
+        password: '',
+        remember: false
+      })
+    }
+  },
+
+  methods: {
+    createuser () {
+      // Submit the form via a POST request
+      this.form.post('api/user')
+        .then(({ data }) => { console.log(data) })
+    }
+  },
   mounted() {
     console.log("Component mounted.");
   }
