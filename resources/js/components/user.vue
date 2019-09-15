@@ -7,8 +7,10 @@
             <h3 class="card-title">User Table</h3>
 
             <div class="card-tools">
-              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" >Add user <i class="fas fa-user-plus fa-fw"></i>
-                  </button>
+              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Add user
+                <i class="fas fa-user-plus fa-fw"></i>
+              </button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -52,23 +54,27 @@
     </div>
     <!-- /.row -->
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" >
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add new user</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <form @submit.prevent="createuser" @keydown="form.onKeydown($event)">
-      <div class="modal-body">
-       <div class="form-group">
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new user</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="createuser" >
+                <div class="form-group">
         <input v-model="form.name" type="text" name="name" placeholder="name"
             class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
         <has-error :form="form" field="name"></has-error>
@@ -101,44 +107,41 @@
             class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
         <has-error :form="form" field="password"></has-error>
         </div>
-
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Create user</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create user</button>
-      </div>
-     </form>
     </div>
-  </div>
-</div>
   </div>
 </template>
 
 <script>
-import { Form} from 'vform'
-
+import { Form } from "vform";
 
 export default {
-  data () {
+  data() {
     return {
       // Create a new form instance
       form: new Form({
-        name: '',
-        email: '',
-        type: '',
-        bio: '',
-        password: '',
+        name: "",
+        email: "",
+        type: "",
+        bio: "",
+        password: "",
         remember: false
       })
-    }
+    };
   },
 
   methods: {
-    createuser () {
+    createuser() {
+        console.log("Component mounted.");
       // Submit the form via a POST request
-      this.form.post('api/user')
-        .then(({ data }) => { console.log(data) })
+      this.form.post("api/user");
     }
   },
   mounted() {

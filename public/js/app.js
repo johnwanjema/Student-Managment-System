@@ -1882,28 +1882,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // Create a new form instance
       form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
-        name: '',
-        email: '',
-        type: '',
-        bio: '',
-        password: '',
+        name: "",
+        email: "",
+        type: "",
+        bio: "",
+        password: "",
         remember: false
       })
     };
   },
   methods: {
     createuser: function createuser() {
-      // Submit the form via a POST request
-      this.form.post('api/user').then(function (_ref) {
-        var data = _ref.data;
-        console.log(data);
-      });
+      console.log("Component mounted."); // Submit the form via a POST request
+
+      this.form.post("api/user");
     }
   },
   mounted: function mounted() {
@@ -38325,12 +38327,6 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c(
-      "button",
-      { staticClass: "btn btn-primary", attrs: { type: "button" } },
-      [_vm._v("\n  Launch demo modal\n")]
-    ),
-    _vm._v(" "),
-    _c(
       "div",
       {
         staticClass: "modal fade",
@@ -38345,26 +38341,23 @@ var render = function() {
       [
         _c(
           "div",
-          { staticClass: "modal-dialog ", attrs: { role: "document" } },
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(1),
               _vm._v(" "),
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.createuser($event)
-                    },
-                    keydown: function($event) {
-                      return _vm.form.onKeydown($event)
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.createuser($event)
+                      }
                     }
-                  }
-                },
-                [
-                  _c("div", { staticClass: "modal-body" }, [
+                  },
+                  [
                     _c(
                       "div",
                       { staticClass: "form-group" },
@@ -38585,12 +38578,12 @@ var render = function() {
                         })
                       ],
                       1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ]
-              )
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]
+                )
+              ])
             ])
           ]
         )
@@ -38620,7 +38613,7 @@ var staticRenderFns = [
                   }
                 },
                 [
-                  _vm._v("Add user "),
+                  _vm._v("\n              Add user\n              "),
                   _c("i", { staticClass: "fas fa-user-plus fa-fw" })
                 ]
               )
@@ -38660,14 +38653,14 @@ var staticRenderFns = [
                   _c("td", [
                     _c("a", { attrs: { href: "" } }, [
                       _vm._v(
-                        "\n                      Edit\n                      "
+                        "\n                    Edit\n                    "
                       ),
                       _c("i", { staticClass: "fa fa-edit" })
                     ]),
-                    _vm._v("/\n                    "),
+                    _vm._v("/\n                  "),
                     _c("a", { attrs: { href: "" } }, [
                       _vm._v(
-                        "\n                      Edit\n                      "
+                        "\n                    Edit\n                    "
                       ),
                       _c("i", { staticClass: "fa fa-trash" })
                     ])
@@ -38721,7 +38714,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
         [_vm._v("Create user")]
       )
     ])
