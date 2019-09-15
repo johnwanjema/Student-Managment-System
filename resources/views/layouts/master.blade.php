@@ -192,10 +192,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Active Page</p>
-                                    </a>
+                                    <router-link to="/users" class="nav-link active">
+                                        <i class="fas  fa-users nav-icon"></i>
+                                        <p>Users Page</p>
+                                    </router-link>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
@@ -215,12 +215,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fa fa-power-off"></i>
-                                <p>
-                                    Logout
+                                <p>{{ __('Logout') }}</p>
 
-                                </p>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                             </a>
                         </li>
                     </ul>
