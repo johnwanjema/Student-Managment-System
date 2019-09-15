@@ -32,7 +32,7 @@
                   <td>{{user.name}}</td>
                    <td>{{user.email}}</td>
                   <td>{{user.type | capitalize}}</td>
-                  <td>{{user.created_at}}</td>
+                  <td>{{user.created_at | mydate}}</td>
 
                   <td>
                     <a href>

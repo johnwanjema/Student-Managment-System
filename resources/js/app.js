@@ -10,6 +10,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 import { Form, HasError, AlertError } from 'vform'
 
+import moment from 'moment';
+
 Window.Form = Form
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -29,6 +31,17 @@ let routes = [
 const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
+})
+
+
+Vue.filter('mydate', function (created) {
+    return moment(created).format("MMM Do YY");
+  })
+
+Vue.filter('capitalize', function (value) {
+if (!value) return ''
+value = value.toString()
+return value.charAt(0).toUpperCase() + value.slice(1)
 })
 /**
  * The following block of code may be used to automatically register your
