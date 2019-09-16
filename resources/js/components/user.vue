@@ -5,7 +5,6 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">User Table</h3>
-
             <div class="card-tools">
               <button class="btn btn-success" @click="openModal">
                 Add user
@@ -35,11 +34,14 @@
                   <td>{{user.created_at | mydate}}</td>
 
                   <td>
-                    <a href>
-                      Edit
-                      <i class="fa fa-edit"></i>
-                    </a> /
-                    <button class="btn btn-danger" @click="deleteUsers(user.id)">
+                    <button class="btn btn-primary" @click="editmodal">
+                      <i class="fa fa-edit"></i>Editt
+                    </button>
+                    /
+                    <button
+                      class="btn btn-danger"
+                      @click="deleteUsers(user.id)"
+                    >
                       <i class="fa fa-trash"></i> Delete
                     </button>
                   </td>
@@ -67,13 +69,14 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add new user</h5>
+            <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Add new user</h5>
+            <h5 v-show="editmode" class="modal-title" id="exampleModalLabel">Update user</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form @submit.prevent="createuser">
+            <form @submit.prevent="editmode ? updateuser() : createuser()">
               <div class="form-group">
                 <input
                   v-model="form.name"
@@ -139,7 +142,8 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Create user</button>
+                <button  v-show="editmode" type="submit" class="btn btn-success">Update user</button>
+                <button v-show="!editmode" type="submit" class="btn btn-primary">Create user</button>
               </div>
             </form>
           </div>
@@ -159,6 +163,7 @@ Window.Fire = Fire;
 export default {
   data() {
     return {
+      editmode: false,
       users: {},
       // Create a new form instance
       form: new Form({
@@ -174,7 +179,40 @@ export default {
 
   methods: {
     openModal() {
+      this.editmode = false;
+      this.form.reset();
       $("#exampleModal").modal("show");
+    },
+    createuser() {
+      this.$Progress.start();
+
+      console.log("Component mounted.");
+      // Submit the form via a POST request
+      this.form
+        .post("api/user")
+        .then(() => {
+          toast.fire({
+            type: "success",
+            title: "Signed in successfully"
+          });
+          Fire.$emit("After");
+          $("#exampleModal").modal("hide");
+        })
+        .catch(() => {});
+
+      this.$Progress.finish();
+      //   $("#exampleModal").modal("hide");
+    },
+
+    updateuser() {
+      console.log("everything good");
+    },
+    editmodal(user) {
+      console.log("editting");
+      this.editmode = true;
+      this.form.reset();
+      $("#exampleModal").modal("show");
+      this.form.fill(user);
     },
     deleteUsers(id) {
       console.log("qwertyu");
@@ -203,26 +241,6 @@ export default {
     },
     loadusers() {
       axios.get("api/user").then(({ data }) => (this.users = data.data));
-    },
-    createuser() {
-      this.$Progress.start();
-
-      console.log("Component mounted.");
-      // Submit the form via a POST request
-      this.form
-        .post("api/user")
-        .then(() => {
-          toast.fire({
-            type: "success",
-            title: "Signed in successfully"
-          });
-          Fire.$emit("After");
-          $("#exampleModal").modal("hide");
-        })
-        .catch(() => {});
-
-      this.$Progress.finish();
-      //   $("#exampleModal").modal("hide");
     }
   },
   mounted() {
