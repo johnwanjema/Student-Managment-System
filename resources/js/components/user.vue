@@ -7,7 +7,7 @@
             <h3 class="card-title">User Table</h3>
 
             <div class="card-tools">
-              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+              <button class="btn btn-success" @click="openModal">
                 Add user
                 <i class="fas fa-user-plus fa-fw"></i>
               </button>
@@ -173,6 +173,9 @@ export default {
   },
 
   methods: {
+    openModal() {
+      $("#exampleModal").modal("show");
+    },
     deleteUsers(id) {
       console.log("qwertyu");
       Swal.fire({
