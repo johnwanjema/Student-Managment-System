@@ -19,17 +19,6 @@ Vue.component(AlertError.name, AlertError)
 import VueRouter from 'vue-router'
 import Swal from 'sweetalert2'
 
-Window.swal = Swal
-
-const toast = Swal.mixin({
-    position: 'top-end',
-    type: 'success',    
-    title: 'Your work has been saved',
-    showConfirmButton: false,
-    timer: 1500
-  })
-
-
 Vue.use(VueRouter)
 
 

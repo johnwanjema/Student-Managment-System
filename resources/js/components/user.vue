@@ -30,7 +30,7 @@
                 <tr v-for="user in users" v-bind:key="user.id">
                   <td>{{user.id}}</td>
                   <td>{{user.name}}</td>
-                   <td>{{user.email}}</td>
+                  <td>{{user.email}}</td>
                   <td>{{user.type | capitalize}}</td>
                   <td>{{user.created_at | mydate}}</td>
 
@@ -74,40 +74,70 @@
             </button>
           </div>
           <div class="modal-body">
-            <form @submit.prevent="createuser" >
-                <div class="form-group">
-        <input v-model="form.name" type="text" name="name" placeholder="name"
-            class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
-        <has-error :form="form" field="name"></has-error>
-        </div>
+            <form @submit.prevent="createuser">
+              <div class="form-group">
+                <input
+                  v-model="form.name"
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.has('name') }"
+                />
+                <has-error :form="form" field="name"></has-error>
+              </div>
 
-        <div class="form-group">
-        <input v-model="form.email" type="email" name="email" placeholder="Email"
-            class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
-        <has-error :form="form" field="email"></has-error>
-        </div>
+              <div class="form-group">
+                <input
+                  v-model="form.email"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.has('email') }"
+                />
+                <has-error :form="form" field="email"></has-error>
+              </div>
 
-        <div class="form-group">
-        <textarea v-model="form.bio" type="text" name="bio" placeholder="Bio"
-            class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-        <has-error :form="form" field="bio"></has-error>
-        </div>
+              <div class="form-group">
+                <textarea
+                  v-model="form.bio"
+                  type="text"
+                  name="bio"
+                  placeholder="Bio"
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.has('bio') }"
+                ></textarea>
+                <has-error :form="form" field="bio"></has-error>
+              </div>
 
-         <div class="form-group">
-            <select v-model="form.type" name="type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
-            <option value="">Select Role</option>
-            <option value="Adim">Admin</option>
-            <option value="User">User</option>
-            <option value="Author">Author</option>
-            </select>
-            <has-error :form="form" field="type"></has-error>
-        </div>
+              <div class="form-group">
+                <select
+                  v-model="form.type"
+                  name="type"
+                  id="type"
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.has('bio') }"
+                >
+                  <option value>Select Role</option>
+                  <option value="Adim">Admin</option>
+                  <option value="User">User</option>
+                  <option value="Author">Author</option>
+                </select>
+                <has-error :form="form" field="type"></has-error>
+              </div>
 
-        <div class="form-group">
-        <input v-model="form.password" type="password" name="password" placeholder="password"
-            class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
-        <has-error :form="form" field="password"></has-error>
-        </div>
+              <div class="form-group">
+                <input
+                  v-model="form.password"
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.has('password') }"
+                />
+                <has-error :form="form" field="password"></has-error>
+              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Create user</button>
@@ -123,10 +153,14 @@
 <script>
 import { Form } from "vform";
 
+let Fire = new Vue();
+
+Window.Fire = Fire;
+
 export default {
   data() {
     return {
-        users: {},
+      users: {},
       // Create a new form instance
       form: new Form({
         name: "",
@@ -140,24 +174,27 @@ export default {
   },
 
   methods: {
-    loadusers(){
-        axios.get("api/user").then(({data})=>(this.users = data.data));
-      },
+    loadusers() {
+      axios.get("api/user").then(({ data }) => (this.users = data.data));
+    },
     createuser() {
-        this.$Progress.start()
-        $('#myModal').modal('hide')
-        $('#exampleModal').modal('hide')
-         $('#exampleModal').modal('hide')
-        console.log("Component mounted.");
+      this.$Progress.start();
+      Fire.$emit("After");
+      console.log("Component mounted.");
       // Submit the form via a POST request
-        this.form.post("api/user");
-        this.$Progress.finish()
+      this.form.post("api/user");
+      this.$Progress.finish();
+      $("#exampleModal").modal("hide");
     }
   },
   mounted() {
-      this.loadusers()
+    this.loadusers();
+    Fire.$on("After", () => {
+      this.loadusers();
+    });
+    $("#exampleModal").modal("hide");
     console.log("Component mounted.");
-      setInterval(()=>this.loadusers(),3000)
+    setInterval(() => this.loadusers(), 3000);
   }
 };
 </script>

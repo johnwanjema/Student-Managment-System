@@ -1887,7 +1887,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+var Fire = new Vue();
+Window.Fire = Fire;
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1914,19 +1946,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     createuser: function createuser() {
       this.$Progress.start();
-      $('#myModal').modal('hide');
-      $('#exampleModal').modal('hide');
-      $('#exampleModal').modal('hide');
+      Fire.$emit("After");
       console.log("Component mounted."); // Submit the form via a POST request
 
       this.form.post("api/user");
       this.$Progress.finish();
+      $("#exampleModal").modal("hide");
     }
   },
   mounted: function mounted() {
     var _this2 = this;
 
     this.loadusers();
+    Fire.$on("After", function () {
+      _this2.loadusers();
+    });
+    $("#exampleModal").modal("hide");
     console.log("Component mounted.");
     setInterval(function () {
       return _this2.loadusers();
@@ -74352,14 +74387,6 @@ Vue.component(vform__WEBPACK_IMPORTED_MODULE_0__["HasError"].name, vform__WEBPAC
 Vue.component(vform__WEBPACK_IMPORTED_MODULE_0__["AlertError"].name, vform__WEBPACK_IMPORTED_MODULE_0__["AlertError"]);
 
 
-Window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a;
-var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
-  position: 'top-end',
-  type: 'success',
-  title: 'Your work has been saved',
-  showConfirmButton: false,
-  timer: 1500
-});
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_4___default.a, {
