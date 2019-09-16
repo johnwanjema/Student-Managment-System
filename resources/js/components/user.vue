@@ -38,11 +38,10 @@
                     <a href>
                       Edit
                       <i class="fa fa-edit"></i>
-                    </a>/
-                    <a href>
-                      Edit
-                      <i class="fa fa-trash"></i>
-                    </a>
+                    </a> /
+                    <button class="btn btn-danger" @click="deleteUsers(user.id)">
+                      <i class="fa fa-trash"></i> Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -174,6 +173,31 @@ export default {
   },
 
   methods: {
+    deleteUsers(id) {
+      console.log("qwertyu");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        // send request
+        if (result.value) {
+          this.form
+            .delete("api/user/" + id)
+            .then(() => {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Fire.$emit("After");
+            })
+            .catch(() => {
+              Swal.fire("Huston we have a problem", "fail");
+            });
+        }
+      });
+    },
     loadusers() {
       axios.get("api/user").then(({ data }) => (this.users = data.data));
     },
@@ -182,22 +206,24 @@ export default {
 
       console.log("Component mounted.");
       // Submit the form via a POST request
-      this.form.post("api/user")
-        .then(()=>{
-            Fire.$emit("After");
-             $("#exampleModal").modal("hide");
-           
+      this.form
+        .post("api/user")
+        .then(() => {
+          toast.fire({
+            type: "success",
+            title: "Signed in successfully"
+          });
+          Fire.$emit("After");
+          $("#exampleModal").modal("hide");
         })
-        .catch(()=>{
-
-        })
-
+        .catch(() => {});
 
       this.$Progress.finish();
-    //   $("#exampleModal").modal("hide");
+      //   $("#exampleModal").modal("hide");
     }
   },
   mounted() {
+    console.log("Component mounted.");
     Fire.$on("After", () => {
       this.loadusers();
     });

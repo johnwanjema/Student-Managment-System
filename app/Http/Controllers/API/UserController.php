@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'min:3','unique:users'],
+            'email' => ['required', 'min:3', 'unique:users'],
             'password' => ['required', 'min:6',],
             'name' => ['required', 'min:3'],
         ]);
@@ -74,6 +74,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //find user
+        $user  =  User::findorFail($id);
+        //dedte user
+        $user->delete();
+        return ["message" => "User deleted"];
     }
 }
