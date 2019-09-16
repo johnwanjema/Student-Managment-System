@@ -42,7 +42,7 @@ class UserController extends Controller
             'bio' => request('bio'),
         ]);
 
-        return redirect('/users');
+        
     }
 
     /**

@@ -144,14 +144,20 @@ export default {
         axios.get("api/user").then(({data})=>(this.users = data.data));
       },
     createuser() {
+        this.$Progress.start()
+        $('#myModal').modal('hide')
+        $('#exampleModal').modal('hide')
+         $('#exampleModal').modal('hide')
         console.log("Component mounted.");
       // Submit the form via a POST request
-      this.form.post("api/user");
+        this.form.post("api/user");
+        this.$Progress.finish()
     }
   },
   mounted() {
       this.loadusers()
     console.log("Component mounted.");
+      setInterval(()=>this.loadusers(),3000)
   }
 };
 </script>

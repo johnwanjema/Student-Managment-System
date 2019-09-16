@@ -17,9 +17,29 @@ Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
 import VueRouter from 'vue-router'
+import Swal from 'sweetalert2'
+
+Window.swal = Swal
+
+const toast = Swal.mixin({
+    position: 'top-end',
+    type: 'success',    
+    title: 'Your work has been saved',
+    showConfirmButton: false,
+    timer: 1500
+  })
+
 
 Vue.use(VueRouter)
 
+
+import VueProgressBar from 'vue-progressbar'
+
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '2000000px'
+})
 
 let routes = [
     { path: '/dashboard', component: require('./components/dashboard.vue').default },
