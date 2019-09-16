@@ -30,9 +30,9 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'min:3'],
-            'email'=> ['required','min:3'],
-            'password'=> ['required','min:6','unique:users'],
-            'name'=> ['required','min:3'],
+            'email' => ['required', 'min:3','unique:users'],
+            'password' => ['required', 'min:6',],
+            'name' => ['required', 'min:3'],
         ]);
         User::create([
             'name' => request('name'),
@@ -41,8 +41,6 @@ class UserController extends Controller
             'type' => request('type'),
             'bio' => request('bio'),
         ]);
-
-        
     }
 
     /**

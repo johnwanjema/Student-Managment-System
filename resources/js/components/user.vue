@@ -179,20 +179,29 @@ export default {
     },
     createuser() {
       this.$Progress.start();
-      Fire.$emit("After");
+
       console.log("Component mounted.");
       // Submit the form via a POST request
-      this.form.post("api/user");
+      this.form.post("api/user")
+        .then(()=>{
+            Fire.$emit("After");
+             $("#exampleModal").modal("hide");
+           
+        })
+        .catch(()=>{
+
+        })
+
+
       this.$Progress.finish();
-      $("#exampleModal").modal("hide");
+    //   $("#exampleModal").modal("hide");
     }
   },
   mounted() {
-    this.loadusers();
     Fire.$on("After", () => {
       this.loadusers();
     });
-    $("#exampleModal").modal("hide");
+
     console.log("Component mounted.");
     setInterval(() => this.loadusers(), 3000);
   }

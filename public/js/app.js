@@ -1946,22 +1946,21 @@ Window.Fire = Fire;
     },
     createuser: function createuser() {
       this.$Progress.start();
-      Fire.$emit("After");
       console.log("Component mounted."); // Submit the form via a POST request
 
-      this.form.post("api/user");
-      this.$Progress.finish();
-      $("#exampleModal").modal("hide");
+      this.form.post("api/user").then(function () {
+        Fire.$emit("After");
+        $("#exampleModal").modal("hide");
+      })["catch"](function () {});
+      this.$Progress.finish(); //   $("#exampleModal").modal("hide");
     }
   },
   mounted: function mounted() {
     var _this2 = this;
 
-    this.loadusers();
     Fire.$on("After", function () {
       _this2.loadusers();
     });
-    $("#exampleModal").modal("hide");
     console.log("Component mounted.");
     setInterval(function () {
       return _this2.loadusers();
