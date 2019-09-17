@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('api');
+        $this->middleware('auth:api');
     }
 
     /**
@@ -64,6 +64,19 @@ class UserController extends Controller
         //
     }
 
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        //
+        return auth('api')->user();
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -78,7 +91,7 @@ class UserController extends Controller
         //validate input
         $this->validate($request, [
             'name' => ['required', 'min:3'],
-            'email' => 'required|email|min:3|unique:users,email,'.$user->id,
+            'email' => 'required|email|min:3|unique:users,email,' . $user->id,
             'password' => ['sometimes', 'min:6',],
             'name' => ['required', 'min:3'],
         ]);

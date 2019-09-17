@@ -22,6 +22,8 @@ import Swal from 'sweetalert2'
 window.Swal = Swal
 Vue.use(VueRouter)
 
+
+window.Form = Form
 const toast = Swal.mixin({
     toast: true,
     position: 'top-end',
