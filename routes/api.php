@@ -22,4 +22,4 @@ Route::apiResources([
     'user' => 'API\UserController',
 ]);
 
-Route::get('/profile', 'API\UserController@profile')->name('home');
+Route::get('profile', 'API\UserController@profile')->name('home');
