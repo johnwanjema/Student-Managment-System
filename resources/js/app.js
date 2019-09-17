@@ -42,6 +42,7 @@ let routes = [
     { path: '/dashboard', component: require('./components/dashboard.vue').default },
     { path: '/profile', component: require('./components/profile.vue').default },
     { path: '/users', component: require('./components/user.vue').default },
+    { path: '/developer', component: require('./components/dev.vue').default },
 
   ]
 
@@ -60,7 +61,25 @@ if (!value) return ''
 value = value.toString()
 return value.charAt(0).toUpperCase() + value.slice(1)
 })
+
+
+//passport api componenets
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
 /**
+ *
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
