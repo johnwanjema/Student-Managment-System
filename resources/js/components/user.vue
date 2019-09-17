@@ -34,7 +34,8 @@
                   <td>{{user.created_at | mydate}}</td>
 
                   <td>
-                    <button class="btn btn-primary" @click="editmodal">
+                    <!-- pass user details to form -->
+                    <button class="btn btn-primary" @click="editmodal(user)">
                       <i class="fa fa-edit"></i>Editt
                     </button>
                     /
@@ -142,7 +143,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button  v-show="editmode" type="submit" class="btn btn-success">Update user</button>
+                <button v-show="editmode" type="submit" class="btn btn-success">Update user</button>
                 <button v-show="!editmode" type="submit" class="btn btn-primary">Create user</button>
               </div>
             </form>
@@ -167,6 +168,7 @@ export default {
       users: {},
       // Create a new form instance
       form: new Form({
+        id: "",
         name: "",
         email: "",
         type: "",
@@ -205,7 +207,20 @@ export default {
     },
 
     updateuser() {
+      this.$Progress.start();
       console.log("everything good");
+      this.form
+        //fetches id from the return data
+        .put("api/user/" + this.form.id)
+        .then(() => {
+          $("#exampleModal").modal("hide");
+          Swal.fire("Updated", "Your infor updated.", "success");
+          this.$Progress.finish();
+          Fire.$emit("After");
+        })
+        .catch(() => {
+          this.$Progress.fail();
+        });
     },
     editmodal(user) {
       console.log("editting");

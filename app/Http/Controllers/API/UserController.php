@@ -64,6 +64,17 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user  =  User::findorFail($id);
+        //validate input
+        $this->validate($request, [
+            'name' => ['required', 'min:3'],
+            'email' => 'required|email|min:3|unique:users,email,'.$user->id,
+            'password' => ['sometimes', 'min:6',],
+            'name' => ['required', 'min:3'],
+        ]);
+
+        $user->update($request->all());
+        return ["message" => "User update"];;
     }
 
     /**
@@ -76,7 +87,7 @@ class UserController extends Controller
     {
         //find user
         $user  =  User::findorFail($id);
-        //dedte user
+        //delete user
         $user->delete();
         return ["message" => "User deleted"];
     }

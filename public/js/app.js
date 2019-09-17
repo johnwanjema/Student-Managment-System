@@ -1920,6 +1920,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 var Fire = new Vue();
 Window.Fire = Fire;
@@ -1930,6 +1931,7 @@ Window.Fire = Fire;
       users: {},
       // Create a new form instance
       form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        id: "",
         name: "",
         email: "",
         type: "",
@@ -1960,7 +1962,21 @@ Window.Fire = Fire;
       this.$Progress.finish(); //   $("#exampleModal").modal("hide");
     },
     updateuser: function updateuser() {
+      var _this = this;
+
+      this.$Progress.start();
       console.log("everything good");
+      this.form //fetches id from the return data
+      .put("api/user/" + this.form.id).then(function () {
+        $("#exampleModal").modal("hide");
+        Swal.fire("Updated", "Your infor updated.", "success");
+
+        _this.$Progress.finish();
+
+        Fire.$emit("After");
+      })["catch"](function () {
+        _this.$Progress.fail();
+      });
     },
     editmodal: function editmodal(user) {
       console.log("editting");
@@ -1970,7 +1986,7 @@ Window.Fire = Fire;
       this.form.fill(user);
     },
     deleteUsers: function deleteUsers(id) {
-      var _this = this;
+      var _this2 = this;
 
       console.log("qwertyu");
       Swal.fire({
@@ -1984,7 +2000,7 @@ Window.Fire = Fire;
       }).then(function (result) {
         // send request
         if (result.value) {
-          _this.form["delete"]("api/user/" + id).then(function () {
+          _this2.form["delete"]("api/user/" + id).then(function () {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
             Fire.$emit("After");
           })["catch"](function () {
@@ -1994,24 +2010,24 @@ Window.Fire = Fire;
       });
     },
     loadusers: function loadusers() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("api/user").then(function (_ref) {
         var data = _ref.data;
-        return _this2.users = data.data;
+        return _this3.users = data.data;
       });
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     console.log("Component mounted.");
     Fire.$on("After", function () {
-      _this3.loadusers();
+      _this4.loadusers();
     });
     console.log("Component mounted.");
     setInterval(function () {
-      return _this3.loadusers();
+      return _this4.loadusers();
     }, 3000);
   }
 });
@@ -58991,7 +59007,11 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-primary",
-                          on: { click: _vm.editmodal }
+                          on: {
+                            click: function($event) {
+                              return _vm.editmodal(user)
+                            }
+                          }
                         },
                         [
                           _c("i", { staticClass: "fa fa-edit" }),
