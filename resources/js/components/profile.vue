@@ -241,6 +241,19 @@
                       </div>
 
                       <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Profile photo</label>
+                        <div class="col-sm-10">
+                          <input @change="updatepic"
+                            type="file"
+                            class="form-control"
+                            id="profilephoto"
+                            placeholder="profilephoto"
+                          />
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
                         <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
 
                         <div class="col-sm-10">
@@ -275,7 +288,7 @@
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <button @click.prevent="update()" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                       </div>
                     </form>
@@ -306,9 +319,24 @@ export default {
         type: "",
         bio: "",
         password: "",
+        photo:"",
         remember: false
       })
     };
+  },
+  methods: {
+      updatepic(e){
+          console.log("prof.");
+          let file = e.target.files[0];
+          let reader = new FileReader();
+          reader.onloadend = (e) =>{
+              console.log("RESULT",reader.result);
+              this.form.photo = reader.result;
+          },
+          reader.readAsDataURL(file);
+
+      }
+
   },
   mounted() {
     console.log("Component mounted.");

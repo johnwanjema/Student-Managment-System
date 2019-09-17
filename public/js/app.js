@@ -2832,6 +2832,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2842,19 +2855,33 @@ __webpack_require__.r(__webpack_exports__);
         type: "",
         bio: "",
         password: "",
+        photo: "",
         remember: false
       })
     };
+  },
+  methods: {
+    updatepic: function updatepic(e) {
+      var _this = this;
+
+      console.log("prof.");
+      var file = e.target.files[0];
+      var reader = new FileReader();
+      reader.onloadend = function (e) {
+        console.log("RESULT", reader.result);
+        _this.form.photo = reader.result;
+      }, reader.readAsDataURL(file);
+    }
   },
   mounted: function mounted() {
     console.log("Component mounted.");
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('api/profile').then(function (_ref) {
       var data = _ref.data;
-      return _this.form.fill(data);
+      return _this2.form.fill(data);
     });
   }
 });
@@ -61986,13 +62013,57 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-sm-2 control-label",
+                              attrs: { for: "inputEmail" }
+                            },
+                            [_vm._v("Profile photo")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-10" }, [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "file",
+                                id: "profilephoto",
+                                placeholder: "profilephoto"
+                              },
+                              on: { change: _vm.updatepic }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
                         _vm._m(3),
                         _vm._v(" "),
                         _vm._m(4),
                         _vm._v(" "),
                         _vm._m(5),
                         _vm._v(" "),
-                        _vm._m(6)
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-sm-offset-2 col-sm-10" },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: { type: "submit" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.update()
+                                    }
+                                  }
+                                },
+                                [_vm._v("Submit")]
+                              )
+                            ]
+                          )
+                        ])
                       ])
                     ]
                   )
@@ -62352,20 +62423,6 @@ var staticRenderFns = [
             _c("a", { attrs: { href: "#" } }, [_vm._v("terms and conditions")])
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-danger", attrs: { type: "submit" } },
-          [_vm._v("Submit")]
-        )
       ])
     ])
   }
