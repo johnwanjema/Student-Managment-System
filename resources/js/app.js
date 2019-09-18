@@ -11,7 +11,9 @@ window.Vue = require('vue');
 import { Form, HasError, AlertError } from 'vform'
 
 import moment from 'moment';
+import Gate  from './gate'
 
+Vue.prototype.$gate = new Gate(window.user)
 Window.Form = Form
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
