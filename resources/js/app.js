@@ -13,8 +13,17 @@ import { Form, HasError, AlertError } from 'vform'
 import moment from 'moment';
 import Gate  from './gate'
 
+window.Fire = new Vue();
+
+
 Vue.prototype.$gate = new Gate(window.user)
+
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
 Window.Form = Form
+
+
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 

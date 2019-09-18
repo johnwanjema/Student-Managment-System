@@ -26,7 +26,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in users" v-bind:key="user.id">
+                <tr v-for="user in users.data" v-bind:key="user.id">
                   <td>{{user.id}}</td>
                   <td>{{user.name}}</td>
                   <td>{{user.email}}</td>
@@ -51,7 +51,9 @@
             </table>
           </div>
           <!-- /.card-body -->
-        </div>
+          <div class="card-footer">
+              <pagination :data="users" @pagination-change-page="getResults"></pagination>
+            </div>
         <!-- /.card -->
       </div>
     </div>
@@ -148,7 +150,7 @@
               </div>
             </form>
           </div>
-        </div>
+        </div></div>
       </div>
     </div>
   </div>
@@ -157,9 +159,7 @@
 <script>
 import { Form } from "vform";
 
-let Fire = new Vue();
 
-Window.Fire = Fire;
 
 export default {
   data() {
@@ -180,6 +180,12 @@ export default {
   },
 
   methods: {
+      getResults(page = 1) {
+			axios.get('api/user?page=' + page)
+				.then(response => {
+					this.users = response.data;
+				});
+		},
     openModal() {
       this.editmode = false;
       this.form.reset();
@@ -255,17 +261,18 @@ export default {
       });
     },
     loadusers() {
-      axios.get("api/user").then(({ data }) => (this.users = data.data));
+      axios.get("api/user").then(({ data }) => (this.users = data));
     }
   },
   mounted() {
+      this.loadusers();
     console.log("Component mounted.");
     Fire.$on("After", () => {
+       console.log("Component mounted.");
       this.loadusers();
     });
 
-    console.log("Component mounted.");
-    setInterval(() => this.loadusers(), 3000);
+    // setInterval(() => this.loadusers(), 3000);
   }
 };
 </script>

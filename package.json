@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bulma": "^0.7.5",
+        "laravel-vue-pagination": "^2.3.0",
         "moment": "^2.24.0",
         "sweetalert2": "^8.17.3",
         "vform": "^1.0.1",
