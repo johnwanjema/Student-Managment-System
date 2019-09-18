@@ -176,66 +176,97 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
+                            <router-link to="/student" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Student Dashboard </p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/results" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Results </p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/search" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Search </p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/searchresults" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Search Results</p>
+                            </router-link>
+                        </li>
+
+                        <li class="nav-item">
+                            <router-link to="/studentdetails" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Exam Results </p>
+                            </router-link>
+                        </li>
+                        < <li class="nav-item">
                             <router-link to="/dashboard" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard </p>
                             </router-link>
-                        </li>
+                            </li>
 
 
-                        <li class="nav-item has-treeview menu-open">
-                            <a class="nav-link ">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    Managment
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <router-link to="/users" class="nav-link active">
-                                        <i class="fas  fa-users nav-icon"></i>
-                                        <p>Users Page</p>
-                                    </router-link>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inactive Page</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/profile" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    profile
+                            <li class="nav-item has-treeview menu-open">
+                                <a class="nav-link ">
+                                    <i class="nav-icon fas fa-cog"></i>
+                                    <p>
+                                        Managment
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <router-link to="/users" class="nav-link active">
+                                            <i class="fas  fa-users nav-icon"></i>
+                                            <p>Users Page</p>
+                                        </router-link>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Inactive Page</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/profile" class="nav-link">
+                                    <i class="nav-icon fas fa-user"></i>
+                                    <p>
+                                        profile
 
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/developer" class="nav-link">
-                                <i class="nav-icon fas fa-cogs"></i>
-                                <p>
-                                    Developer
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    </p>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/developer" class="nav-link">
+                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <p>
+                                        Developer
+                                    </p>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="nav-icon fa fa-power-off"></i>
-                                <p>{{ __('Logout') }}</p>
+                                    <i class="nav-icon fa fa-power-off"></i>
+                                    <p>{{ __('Logout') }}</p>
 
-                            </a>
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                            </a>
-                        </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                </a>
+                            </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
