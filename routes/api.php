@@ -23,3 +23,4 @@ Route::apiResources([
 ]);
 
 Route::get('profile', 'API\UserController@profile')->name('home');
+Route::put('profile', 'API\UserController@profile')->name('home');
