@@ -63674,7 +63674,7 @@ var render = function() {
                               _vm._v("Select Role")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "Adim" } }, [
+                            _c("option", { attrs: { value: "Admin" } }, [
                               _vm._v("Admin")
                             ]),
                             _vm._v(" "),

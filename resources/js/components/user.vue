@@ -123,7 +123,7 @@
                   :class="{ 'is-invalid': form.errors.has('bio') }"
                 >
                   <option value>Select Role</option>
-                  <option value="Adim">Admin</option>
+                  <option value="Admin">Admin</option>
                   <option value="User">User</option>
                   <option value="Author">Author</option>
                 </select>
