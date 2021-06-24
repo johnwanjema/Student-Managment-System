@@ -1,7 +1,6 @@
 const dashboard = () => import('../components/dashboard');
 const profile = () => import('../components/profile.vue');
 const users = () => import('../components/user.vue');
-const developer = () => import('../components/dev.vue');
 const student = () => import('../components/student.vue');
 const results = () => import('../components/results.vue');
 const search = () => import('../components/search.vue');
@@ -25,11 +24,6 @@ export default [
         path: '/admin/users',
         component: users,
         name: 'users',
-    },
-    {
-        path: '/admin/developer',
-        component: developer,
-        name: 'developer',
     },
     {
         path: '/admin/student',
