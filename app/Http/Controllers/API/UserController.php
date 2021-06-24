@@ -26,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         // $this->authorize('isAdmin');
-        return User::latest()->paginate(5);
+        return User::all();
     }
     /**
      * Store a newly created resource in storage.
