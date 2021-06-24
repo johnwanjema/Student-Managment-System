@@ -17,7 +17,28 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/{path}', 'HomeController@index')->where(['path' => '.*']);
+// Route::get('/admin/{path}', 'HomeController@index')->where(['path' => '.*']);
+
+Route::get(
+    '/admin/{any?}',
+    function () {
+        // return Auth::user()->email;
+        if (Auth::user() == null) {
+            return redirect()->route('login');
+        } else {
+            return view('home');
+        }
+    }
+)->name('home');
+
+Route::get('logout', [
+    'as' => 'logout',
+    function () {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+]);
+

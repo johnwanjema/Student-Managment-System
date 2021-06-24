@@ -80532,7 +80532,7 @@ Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default.a, {
   height: '2000000px'
 });
 var routes = [{
-  path: '/dashboard',
+  path: '/admin/dashboard',
   component: __webpack_require__(/*! ./components/dashboard.vue */ "./resources/js/components/dashboard.vue")["default"]
 }, {
   path: '/profile',
