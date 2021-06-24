@@ -239,7 +239,7 @@ export default {
         },
         loadusers() {
           axios.get('/api/user').then(({ data }) => {
-                this.users = data;
+                this.users = data.data;
                 this.totalRows = this.users.length;
             }).catch((error) => {
                 console.log(error);

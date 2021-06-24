@@ -252,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/user').then(function (_ref) {
         var data = _ref.data;
-        _this4.users = data;
+        _this4.users = data.data;
         _this4.totalRows = _this4.users.length;
       })["catch"](function (error) {
         console.log(error);

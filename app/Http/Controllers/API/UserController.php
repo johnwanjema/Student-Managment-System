@@ -26,7 +26,9 @@ class UserController extends Controller
     public function index()
     {
         // $this->authorize('isAdmin');
-        return User::all();
+        $users = User::all();
+        return api_response(true,null, 200, 'success','successfully fetched all users', $users);
+
     }
     /**
      * Store a newly created resource in storage.
