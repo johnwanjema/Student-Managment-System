@@ -119,10 +119,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -146,38 +142,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-12 mt-2" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [
-              _vm._v("Responsive Hover Table")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-tools" }, [
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.editmode($event)
-                    }
-                  }
-                },
-                [_vm._m(0)]
-              )
+  return _c(
+    "div",
+    { staticClass: "content-wrapper", staticStyle: { "min-height": "344px" } },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-12 mt-2" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h3", { staticClass: "card-title" }, [
+                    _vm._v("Responsive Hover Table")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-tools" }, [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.editmode($event)
+                          }
+                        }
+                      },
+                      [_vm._m(1)]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
             ])
-          ]),
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [_c("h1", [_vm._v("Users")])]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "/admin" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Users")
+              ])
+            ])
+          ])
         ])
       ])
     ])
-  ])
-}
-var staticRenderFns = [
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -233,12 +263,12 @@ var staticRenderFns = [
             _c("td", [
               _c("button", { staticClass: "btn btn-primary" }, [
                 _c("i", { staticClass: "fas fa-print" }),
-                _vm._v("Print\n                  ")
+                _vm._v("Print")
               ]),
-              _vm._v("\n                  /\n                  "),
+              _vm._v(" /\n                                            "),
               _c("button", { staticClass: "btn btn-danger" }, [
                 _c("i", { staticClass: "fas fa-edit" }),
-                _vm._v(" view\n                  ")
+                _vm._v(" view")
               ])
             ])
           ]),
@@ -253,12 +283,12 @@ var staticRenderFns = [
             _c("td", [
               _c("button", { staticClass: "btn btn-primary" }, [
                 _c("i", { staticClass: "fas fa-print" }),
-                _vm._v("Print\n                  ")
+                _vm._v("Print")
               ]),
-              _vm._v("\n                  /\n                  "),
+              _vm._v(" /\n                                            "),
               _c("button", { staticClass: "btn btn-danger" }, [
                 _c("i", { staticClass: "fas fa-edit" }),
-                _vm._v(" view\n                  ")
+                _vm._v(" view")
               ])
             ])
           ]),
@@ -273,12 +303,12 @@ var staticRenderFns = [
             _c("td", [
               _c("button", { staticClass: "btn btn-primary" }, [
                 _c("i", { staticClass: "fas fa-print" }),
-                _vm._v("Print\n                  ")
+                _vm._v("Print")
               ]),
-              _vm._v("\n                  /\n                  "),
+              _vm._v(" /\n                                            "),
               _c("button", { staticClass: "btn btn-danger" }, [
                 _c("i", { staticClass: "fas fa-edit" }),
-                _vm._v(" view\n                  ")
+                _vm._v(" view")
               ])
             ])
           ]),
@@ -293,12 +323,12 @@ var staticRenderFns = [
             _c("td", [
               _c("button", { staticClass: "btn btn-primary" }, [
                 _c("i", { staticClass: "fas fa-print" }),
-                _vm._v("Print\n                  ")
+                _vm._v("Print")
               ]),
-              _vm._v("\n                  /\n                  "),
+              _vm._v(" /\n                                            "),
               _c("button", { staticClass: "btn btn-danger" }, [
                 _c("i", { staticClass: "fas fa-edit" }),
-                _vm._v("view\n                  ")
+                _vm._v("view")
               ])
             ])
           ])

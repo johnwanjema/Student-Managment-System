@@ -29,6 +29,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -59,51 +80,87 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "card mt-5", staticStyle: { width: "1000px" } },
-            [
-              _c("div", { staticClass: "card-header align-center" }, [
-                _vm._v(" Exam Details")
+    return _c(
+      "div",
+      {
+        staticClass: "content-wrapper",
+        staticStyle: { "min-height": "344px" }
+      },
+      [
+        _c("section", { staticClass: "content-header" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row mb-2" }, [
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("h1", [_vm._v("Users")])
               ]),
               _vm._v(" "),
-              _c("ul", { staticClass: "list-group list-group-flush" }, [
-                _c("hr"),
-                _vm._v(" "),
-                _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v("Class name : B.tech Y1")
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v("Course name : SCCJ/2018")
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v("Lecture name: Waiguru")
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v("Added on : Sep 17th 19")
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v("Deadline : Sep 17th 19")
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "/admin" } }, [_vm._v("Home")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item active" }, [
+                    _vm._v("Users")
+                  ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                [_vm._v("Start Exam")]
-              )
-            ]
-          )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row justify-content-center" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card mt-5",
+                    staticStyle: { width: "1000px" }
+                  },
+                  [
+                    _c("div", { staticClass: "card-header align-center" }, [
+                      _vm._v(" Exam Details")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "list-group list-group-flush" }, [
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "list-group-item" }, [
+                        _vm._v("Class name : B.tech Y1")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "list-group-item" }, [
+                        _vm._v("Course name : SCCJ/2018")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "list-group-item" }, [
+                        _vm._v("Lecture name: Waiguru")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "list-group-item" }, [
+                        _vm._v("Added on : Sep 17th 19")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "list-group-item" }, [
+                        _vm._v("Deadline : Sep 17th 19")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                      [_vm._v("Start Exam")]
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
         ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
