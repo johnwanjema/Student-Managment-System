@@ -168,10 +168,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       currentPage: 1,
       perPage: 5,
-      fields: ['#', 'photo', 'name', 'email', 'bio', {
-        key: 'type',
-        label: 'User Type'
-      }, 'created_at', 'actions'],
+      fields: ['#', 'photo', 'name', 'email', 'class', 'created_at', 'actions'],
       filter: null,
       filterOn: [],
       totalRows: 1
@@ -302,10 +299,6 @@ var render = function() {
             _c("div", { staticClass: "col-md-12 mt-2" }, [
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-header" }, [
-                  _c("h3", { staticClass: "card-title" }, [
-                    _vm._v("DataTable with default features")
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "card-tools" }, [
                     _c(
                       "button",
@@ -315,7 +308,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                                    Add user\n                                    "
+                          "\n                                    Add Student\n                                    "
                         ),
                         _c("i", { staticClass: "fas fa-user-plus fa-fw" })
                       ]
@@ -332,8 +325,6 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row" }, [
-                        _vm._m(1),
-                        _vm._v(" "),
                         _c("div", { staticClass: "col-sm-12 col-md-6" }, [
                           _c(
                             "div",
@@ -514,7 +505,7 @@ var render = function() {
                             staticClass: "modal-title",
                             attrs: { id: "exampleModalLabel" }
                           },
-                          [_vm._v("Add new user")]
+                          [_vm._v("Add new Student")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -531,10 +522,10 @@ var render = function() {
                             staticClass: "modal-title",
                             attrs: { id: "exampleModalLabel" }
                           },
-                          [_vm._v("Update user")]
+                          [_vm._v("Update Student")]
                         ),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(1)
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
@@ -571,7 +562,7 @@ var render = function() {
                                   attrs: {
                                     type: "text",
                                     name: "name",
-                                    placeholder: "Name"
+                                    placeholder: "First Name"
                                   },
                                   domProps: { value: _vm.form.name },
                                   on: {
@@ -582,6 +573,50 @@ var render = function() {
                                       _vm.$set(
                                         _vm.form,
                                         "name",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("has-error", {
+                                  attrs: { form: _vm.form, field: "name" }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-group" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.lastName,
+                                      expression: "form.lastName"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.form.errors.has("name")
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    name: "name",
+                                    placeholder: "Last Name"
+                                  },
+                                  domProps: { value: _vm.form.lastName },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "lastName",
                                         $event.target.value
                                       )
                                     }
@@ -643,50 +678,6 @@ var render = function() {
                               "div",
                               { staticClass: "form-group" },
                               [
-                                _c("textarea", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.bio,
-                                      expression: "form.bio"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  class: {
-                                    "is-invalid": _vm.form.errors.has("bio")
-                                  },
-                                  attrs: {
-                                    type: "text",
-                                    name: "bio",
-                                    placeholder: "Bio"
-                                  },
-                                  domProps: { value: _vm.form.bio },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "bio",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("has-error", {
-                                  attrs: { form: _vm.form, field: "bio" }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-group" },
-                              [
                                 _c(
                                   "select",
                                   {
@@ -728,17 +719,17 @@ var render = function() {
                                   },
                                   [
                                     _c("option", { attrs: { value: "" } }, [
-                                      _vm._v("Select Role")
+                                      _vm._v("Select Class")
                                     ]),
                                     _vm._v(" "),
                                     _c(
                                       "option",
                                       { attrs: { value: "Admin" } },
-                                      [_vm._v("Admin")]
+                                      [_vm._v("Class 1")]
                                     ),
                                     _vm._v(" "),
                                     _c("option", { attrs: { value: "User" } }, [
-                                      _vm._v("User")
+                                      _vm._v("Class 5")
                                     ])
                                   ]
                                 ),
@@ -772,7 +763,7 @@ var render = function() {
                                   attrs: {
                                     type: "password",
                                     name: "password",
-                                    placeholder: "password"
+                                    placeholder: "Password"
                                   },
                                   domProps: { value: _vm.form.password },
                                   on: {
@@ -800,18 +791,6 @@ var render = function() {
                               _c(
                                 "button",
                                 {
-                                  staticClass: "btn btn-danger",
-                                  attrs: {
-                                    type: "button",
-                                    "data-dismiss": "modal"
-                                  }
-                                },
-                                [_vm._v("Close")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
                                   directives: [
                                     {
                                       name: "show",
@@ -823,7 +802,7 @@ var render = function() {
                                   staticClass: "btn btn-success",
                                   attrs: { type: "submit" }
                                 },
-                                [_vm._v("Update user")]
+                                [_vm._v("Update Student")]
                               ),
                               _vm._v(" "),
                               _c(
@@ -840,7 +819,19 @@ var render = function() {
                                   staticClass: "btn btn-primary",
                                   attrs: { type: "submit" }
                                 },
-                                [_vm._v("Create user")]
+                                [_vm._v("Create Student")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: {
+                                    type: "button",
+                                    "data-dismiss": "modal"
+                                  }
+                                },
+                                [_vm._v("Close")]
                               )
                             ])
                           ]
@@ -865,7 +856,9 @@ var staticRenderFns = [
     return _c("section", { staticClass: "content-header" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
-          _c("div", { staticClass: "col-sm-6" }, [_c("h1", [_vm._v("Users")])]),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", [_vm._v("Students")])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
@@ -874,101 +867,10 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "breadcrumb-item active" }, [
-                _vm._v("Users")
+                _vm._v("Students")
               ])
             ])
           ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c("div", { staticClass: "dt-buttons btn-group flex-wrap" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary buttons-copy buttons-html5",
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              type: "button"
-            }
-          },
-          [_c("span", [_vm._v("Copy")])]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary buttons-csv buttons-html5",
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              type: "button"
-            }
-          },
-          [_c("span", [_vm._v("CSV")])]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary buttons-excel buttons-html5",
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              type: "button"
-            }
-          },
-          [_c("span", [_vm._v("Excel")])]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary buttons-pdf buttons-html5",
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              type: "button"
-            }
-          },
-          [_c("span", [_vm._v("PDF")])]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-secondary buttons-print",
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              type: "button"
-            }
-          },
-          [_c("span", [_vm._v("Print")])]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "btn-group" }, [
-          _c(
-            "button",
-            {
-              staticClass:
-                "btn btn-secondary buttons-collection dropdown-toggle buttons-colvis",
-              attrs: {
-                tabindex: "0",
-                "aria-controls": "example1",
-                type: "button",
-                "aria-haspopup": "true",
-                "aria-expanded": "false"
-              }
-            },
-            [_c("span", [_vm._v("Column visibility")])]
-          )
         ])
       ])
     ])

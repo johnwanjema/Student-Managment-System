@@ -15,12 +15,12 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <!-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="index3.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Right navbar links -->
@@ -150,8 +150,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <!-- <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+                <span class="brand-text font-weight-light">Students Dashboard</span>
             </a>
 
             <!-- Sidebar -->
@@ -162,7 +162,7 @@
                         <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{Auth::user()->name}}</a>
                     </div>
                 </div>
 
@@ -185,52 +185,32 @@
                with font-awesome or any other icon font library -->
                         
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <router-link to="/admin" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Dashboard
-                                    <span class="right badge badge-danger">New</span>
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                            <router-link to="/admin" class="nav-link">
+                                <i class="nav-icon fas fa-building"></i>
                                 <p>
-                                    Charts
-                                    <i class="right fas fa-angle-left"></i>
+                                    Classes
                                 </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>ChartJS</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Flot</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/inline.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inline</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/uplot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>uPlot</p>
-                                    </a>
-                                </li>
-                            </ul>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/admin/users" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Students
+                                </p>
+                            </router-link>
                         </li>
                         <li class="nav-item">
                             <a href="/logout" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class="nav-icon fas fa-lock"></i>
                                 <p>Logout</p>
                             </a>
                         </li>

@@ -4,12 +4,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Users</h1>
+                        <h1>Students</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                            <li class="breadcrumb-item active">Users</li>
+                            <li class="breadcrumb-item active">Students</li>
                         </ol>
                     </div>
                 </div>
@@ -22,10 +22,10 @@
                     <div class="col-md-12 mt-2">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable with default features</h3>
+                                <!-- <h3 class="card-title">DataTable with default features</h3> -->
                                 <div class="card-tools">
                                     <button class="btn btn-success" @click="openModal">
-                                        Add user
+                                        Add Student
                                         <i class="fas fa-user-plus fa-fw"></i>
                                     </button>
                                 </div>
@@ -34,7 +34,7 @@
                             <div class="card-body">
                                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
+                                        <!-- <div class="col-sm-12 col-md-6">
                                             <div class="dt-buttons btn-group flex-wrap">
                                                 <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>Copy</span></button>
                                                 <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>CSV</span></button>
@@ -47,7 +47,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-sm-12 col-md-6">
                                             <div id="example1_filter" class="dataTables_filter">
                                                 <label>Search:<input v-model="filter" type="search" class="form-control form-control-md" placeholder="" aria-controls="example1" /></label>
@@ -91,8 +91,8 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Add new user</h5>
-                                    <h5 v-show="editmode" class="modal-title" id="exampleModalLabel">Update user</h5>
+                                    <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Add new Student</h5>
+                                    <h5 v-show="editmode" class="modal-title" id="exampleModalLabel">Update Student</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -100,7 +100,11 @@
                                 <div class="modal-body">
                                     <form @submit.prevent="editmode ? updateuser() : createuser()">
                                         <div class="form-group">
-                                            <input v-model="form.name" type="text" name="name" placeholder="Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
+                                            <input v-model="form.name" type="text" name="name" placeholder="First Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
+                                            <has-error :form="form" field="name"></has-error>
+                                        </div>
+                                        <div class="form-group">
+                                            <input v-model="form.lastName" type="text" name="name" placeholder="Last Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
                                             <has-error :form="form" field="name"></has-error>
                                         </div>
                                         <div class="form-group">
@@ -108,25 +112,21 @@
                                             <has-error :form="form" field="email"></has-error>
                                         </div>
                                         <div class="form-group">
-                                            <textarea v-model="form.bio" type="text" name="bio" placeholder="Bio" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-                                            <has-error :form="form" field="bio"></has-error>
-                                        </div>
-                                        <div class="form-group">
                                             <select v-model="form.type" name="type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
-                                                <option value>Select Role</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="User">User</option>
+                                                <option value>Select Class</option>
+                                                <option value="Admin">Class 1</option>
+                                                <option value="User">Class 5</option>
                                             </select>
                                             <has-error :form="form" field="type"></has-error>
                                         </div>
                                         <div class="form-group">
-                                            <input v-model="form.password" type="password" name="password" placeholder="password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" />
+                                            <input v-model="form.password" type="password" name="password" placeholder="Password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" />
                                             <has-error :form="form" field="password"></has-error>
                                         </div>
                                         <div class="modal-footer">
+                                            <button v-show="editmode" type="submit" class="btn btn-success">Update Student</button>
+                                            <button v-show="!editmode" type="submit" class="btn btn-primary">Create Student</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            <button v-show="editmode" type="submit" class="btn btn-success">Update user</button>
-                                            <button v-show="!editmode" type="submit" class="btn btn-primary">Create user</button>
                                         </div>
                                     </form>
                                 </div>
@@ -158,7 +158,7 @@ export default {
             }),
             currentPage: 1,
             perPage: 5,
-            fields: ['#','photo','name','email','bio',{key:'type', label:'User Type'},'created_at','actions'],
+            fields: ['#','photo','name','email','class','created_at','actions'],
             filter: null,
             filterOn: [],
             totalRows:1,
