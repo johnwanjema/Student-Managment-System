@@ -11,7 +11,7 @@ window.Vue = require('vue');
 import { Form, HasError, AlertError } from 'vform'
 
 import moment from 'moment';
-import Gate  from './gate'
+import Gate from './gate'
 
 window.Fire = new Vue();
 
@@ -36,11 +36,11 @@ Vue.use(VueRouter)
 
 window.Form = Form
 const toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-  })
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+})
 
 window.toast = toast
 import VueProgressBar from 'vue-progressbar'
@@ -51,71 +51,41 @@ Vue.use(VueProgressBar, {
   height: '2000000px'
 })
 
-let routes = [
-    { path: '/dashboard', component: require('./components/dashboard.vue').default },
-    { path: '/profile', component: require('./components/profile.vue').default },
-    { path: '/users', component: require('./components/user.vue').default },
-    { path: '/developer', component: require('./components/dev.vue').default },
-    { path: '/student', component: require('./components/student.vue').default },
-    { path: '/results', component: require('./components/results.vue').default },
-    { path: '/search', component: require('./components/search.vue').default },
-    { path: '/searchresults', component: require('./components/searchresults.vue').default },
-    { path: '/studentdetails', component: require('./components/studentdetails.vue').default },
+//axios
+import axios from "axios";
+window.axios = axios;
 
-  ]
 
-const router = new VueRouter({
-    mode: 'history',
-    routes // short for `routes: routes`
-})
+//Bootstrtap vue
+import BootstrapVue from 'bootstrap-vue'
+
+//bootstapVue
+Vue.use(BootstrapVue);
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+//jquery
+import $ from 'jquery'
+window.$ = $
+
+// router
+import router from './routes.js';
+window.router = router;
+window.Fire = new Vue();
 
 
 Vue.filter('mydate', function (created) {
-    return moment(created).format("MMM Do YY");
-  })
+  return moment(created).format("MMM Do YY");
+})
 
 Vue.filter('capitalize', function (value) {
-if (!value) return ''
-value = value.toString()
-return value.charAt(0).toUpperCase() + value.slice(1)
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 
 
-//passport api componenets
-Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
-);
-
-Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
-);
-
-Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
-);
-/**
- *
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
 const app = new Vue({
-    router,
-    el: '#app'
+  router,
+  el: '#app'
 });
