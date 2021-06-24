@@ -1713,6 +1713,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -62491,23 +62571,139 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Dasboard Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm the dashboard\n                "
-              )
+    return _c(
+      "div",
+      {
+        staticClass: "content-wrapper",
+        staticStyle: { "min-height": "344px" }
+      },
+      [
+        _c("div", { staticClass: "content-header" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row mb-2" }, [
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("h1", { staticClass: "m-0" }, [_vm._v("Dashboard")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item active" }, [
+                    _vm._v("Dashboard v1")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("section", { staticClass: "content" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-3 col-6" }, [
+                _c("div", { staticClass: "small-box bg-info" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("h3", [_vm._v("150")]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("New Orders")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "icon" }, [
+                    _c("i", { staticClass: "ion ion-bag" })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "small-box-footer", attrs: { href: "#" } },
+                    [
+                      _vm._v("More info "),
+                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 col-6" }, [
+                _c("div", { staticClass: "small-box bg-success" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("h3", [
+                      _vm._v("53"),
+                      _c("sup", { staticStyle: { "font-size": "20px" } }, [
+                        _vm._v("%")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Bounce Rate")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "icon" }, [
+                    _c("i", { staticClass: "ion ion-stats-bars" })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "small-box-footer", attrs: { href: "#" } },
+                    [
+                      _vm._v("More info "),
+                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 col-6" }, [
+                _c("div", { staticClass: "small-box bg-warning" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("h3", [_vm._v("44")]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("User Registrations")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "icon" }, [
+                    _c("i", { staticClass: "ion ion-person-add" })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "small-box-footer", attrs: { href: "#" } },
+                    [
+                      _vm._v("More info "),
+                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 col-6" }, [
+                _c("div", { staticClass: "small-box bg-danger" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("h3", [_vm._v("65")]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Unique Visitors")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "icon" }, [
+                    _c("i", { staticClass: "ion ion-pie-graph" })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "small-box-footer", attrs: { href: "#" } },
+                    [
+                      _vm._v("More info "),
+                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                    ]
+                  )
+                ])
+              ])
             ])
           ])
         ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -81424,8 +81620,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/john/Documents/laravel/ninja/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/john/Documents/laravel/ninja/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/joh/Documents/laravel/studentDashboard/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/joh/Documents/laravel/studentDashboard/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
