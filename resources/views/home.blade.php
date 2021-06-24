@@ -193,7 +193,7 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/admin" class="nav-link">
+                            <router-link to="/admin/classes" class="nav-link">
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>
                                     Classes
@@ -201,7 +201,7 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/admin/users" class="nav-link">
+                            <router-link to="/admin/students" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Students
