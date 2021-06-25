@@ -230,7 +230,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this4.loadClasses();
           })["catch"](function () {
-            Swal.fire("Huston we have a problem", "fail");
+            Swal.fire("Failed to delete", "Failed");
           });
         }
       });

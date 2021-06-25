@@ -119,9 +119,9 @@
                                             <has-error :form="form" field="type"></has-error>
                                         </div>
                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                             <button v-show="editmode" type="submit" class="btn btn-success">Update Student</button>
                                             <button v-show="!editmode" type="submit" class="btn btn-primary">Create Student</button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
                                     </form>
                                 </div>
@@ -146,7 +146,6 @@ export default {
                 firstName: "",
                 lastName: "",
                 email: "",
-                type: "student",
                 bio: "",
                 password: "",
                 classId: "",
@@ -192,12 +191,12 @@ export default {
         updateStudent() {
             this.$Progress.start();
             this.form
-                .put("/api/user/" + this.form.id)
+                .put("/api/students/" + this.form.id)
                 .then(() => {
                     $("#exampleModal").modal("hide");
                     Swal.fire("Updated", "User has been updated.", "success");
                     this.$Progress.finish();
-                    Fire.$emit("After");
+                    this.getStudents();
                 })
                 .catch(() => {
                     this.$Progress.fail();
@@ -222,13 +221,13 @@ export default {
                 // send request
                 if (result.value) {
                     this.form
-                        .delete("api/user/" + id)
+                        .delete("/api/students/" + id)
                         .then(() => {
-                            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-                            Fire.$emit("After");
+                            Swal.fire("Deleted!", "Student has been deleted.", "success");
+                            this.getStudents();
                         })
                         .catch(() => {
-                            Swal.fire("Huston we have a problem", "fail");
+                            Swal.fire("Failed to delete", "Failed");
                         });
                 }
             });

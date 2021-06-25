@@ -156,7 +156,6 @@ __webpack_require__.r(__webpack_exports__);
         firstName: "",
         lastName: "",
         email: "",
-        type: "student",
         bio: "",
         password: "",
         classId: ""
@@ -206,13 +205,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.$Progress.start();
-      this.form.put("/api/user/" + this.form.id).then(function () {
+      this.form.put("/api/students/" + this.form.id).then(function () {
         $("#exampleModal").modal("hide");
         Swal.fire("Updated", "User has been updated.", "success");
 
         _this3.$Progress.finish();
 
-        Fire.$emit("After");
+        _this3.getStudents();
       })["catch"](function () {
         _this3.$Progress.fail();
       });
@@ -237,11 +236,12 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         // send request
         if (result.value) {
-          _this4.form["delete"]("api/user/" + id).then(function () {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            Fire.$emit("After");
+          _this4.form["delete"]("/api/students/" + id).then(function () {
+            Swal.fire("Deleted!", "Student has been deleted.", "success");
+
+            _this4.getStudents();
           })["catch"](function () {
-            Swal.fire("Huston we have a problem", "fail");
+            Swal.fire("Failed to delete", "Failed");
           });
         }
       });
@@ -759,6 +759,18 @@ var render = function() {
                               _c(
                                 "button",
                                 {
+                                  staticClass: "btn btn-danger",
+                                  attrs: {
+                                    type: "button",
+                                    "data-dismiss": "modal"
+                                  }
+                                },
+                                [_vm._v("Close")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
                                   directives: [
                                     {
                                       name: "show",
@@ -788,18 +800,6 @@ var render = function() {
                                   attrs: { type: "submit" }
                                 },
                                 [_vm._v("Create Student")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  attrs: {
-                                    type: "button",
-                                    "data-dismiss": "modal"
-                                  }
-                                },
-                                [_vm._v("Close")]
                               )
                             ])
                           ]

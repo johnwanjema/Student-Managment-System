@@ -215,7 +215,7 @@ export default {
                             this.loadClasses();
                         })
                         .catch(() => {
-                            Swal.fire("Huston we have a problem", "fail");
+                            Swal.fire("Failed to delete", "Failed");
                         });
                 }
             });

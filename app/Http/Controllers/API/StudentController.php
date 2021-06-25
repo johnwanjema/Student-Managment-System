@@ -70,7 +70,15 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student = student::find($id);
+
+        if (is_null($student)) {
+            return api_response(false, null, 0, 'false','Student with that id does not exist', null);
+        }
+
+        $student->update($request->all());
+
+        return api_response(true, null, 0, 'success','successfully updated student', $student);
     }
 
     /**
@@ -81,6 +89,13 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = student::find($id);
+        if (is_null($student)) {
+            return api_response(false, null, 0, 'false','Student with that id does not exist', null);
+        }
+
+        $student->delete();
+
+        return api_response(true, null, 0, 'success','successfully deleted student', null);
     }
 }
