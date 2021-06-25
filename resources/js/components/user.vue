@@ -100,12 +100,12 @@
                                 <div class="modal-body">
                                     <form @submit.prevent="editmode ? updateuser() : createuser()">
                                         <div class="form-group">
-                                            <input v-model="form.name" type="text" name="name" placeholder="First Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
-                                            <has-error :form="form" field="name"></has-error>
+                                            <input v-model="form.firstName" type="text" name="lastName" placeholder="First Name" class="form-control" :class="{ 'is-invalid': form.errors.has('firstName') }" />
+                                            <has-error :form="form" field="firstName"></has-error>
                                         </div>
                                         <div class="form-group">
-                                            <input v-model="form.lastName" type="text" name="name" placeholder="Last Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
-                                            <has-error :form="form" field="name"></has-error>
+                                            <input v-model="form.lastName" type="text" name="lastName" placeholder="Last Name" class="form-control" :class="{ 'is-invalid': form.errors.has('lastName') }" />
+                                            <has-error :form="form" field="lastName"></has-error>
                                         </div>
                                         <div class="form-group">
                                             <input v-model="form.email" type="email" name="email" placeholder="Email" class="form-control" :class="{ 'is-invalid': form.errors.has('email') }" />
@@ -149,16 +149,17 @@ export default {
             users: {},
             form: new Form({
                 id: "",
-                name: "",
+                firstName: "",
+                lastName: "",
                 email: "",
-                type: "",
+                type: "student",
                 bio: "",
                 password: "",
                 remember: false
             }),
             currentPage: 1,
             perPage: 5,
-            fields: ['#','photo','name','email','class','created_at','actions'],
+            fields: ['#','full_name','email','class','created_at','actions'],
             filter: null,
             filterOn: [],
             totalRows:1,

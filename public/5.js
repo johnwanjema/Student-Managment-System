@@ -159,16 +159,17 @@ __webpack_require__.r(__webpack_exports__);
       users: {},
       form: new Form({
         id: "",
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
-        type: "",
+        type: "student",
         bio: "",
         password: "",
         remember: false
       }),
       currentPage: 1,
       perPage: 5,
-      fields: ['#', 'photo', 'name', 'email', 'class', 'created_at', 'actions'],
+      fields: ['#', 'full_name', 'email', 'class', 'created_at', 'actions'],
       filter: null,
       filterOn: [],
       totalRows: 1
@@ -551,20 +552,22 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.name,
-                                      expression: "form.name"
+                                      value: _vm.form.firstName,
+                                      expression: "form.firstName"
                                     }
                                   ],
                                   staticClass: "form-control",
                                   class: {
-                                    "is-invalid": _vm.form.errors.has("name")
+                                    "is-invalid": _vm.form.errors.has(
+                                      "firstName"
+                                    )
                                   },
                                   attrs: {
                                     type: "text",
-                                    name: "name",
+                                    name: "lastName",
                                     placeholder: "First Name"
                                   },
-                                  domProps: { value: _vm.form.name },
+                                  domProps: { value: _vm.form.firstName },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
@@ -572,7 +575,7 @@ var render = function() {
                                       }
                                       _vm.$set(
                                         _vm.form,
-                                        "name",
+                                        "firstName",
                                         $event.target.value
                                       )
                                     }
@@ -580,7 +583,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _c("has-error", {
-                                  attrs: { form: _vm.form, field: "name" }
+                                  attrs: { form: _vm.form, field: "firstName" }
                                 })
                               ],
                               1
@@ -601,11 +604,13 @@ var render = function() {
                                   ],
                                   staticClass: "form-control",
                                   class: {
-                                    "is-invalid": _vm.form.errors.has("name")
+                                    "is-invalid": _vm.form.errors.has(
+                                      "lastName"
+                                    )
                                   },
                                   attrs: {
                                     type: "text",
-                                    name: "name",
+                                    name: "lastName",
                                     placeholder: "Last Name"
                                   },
                                   domProps: { value: _vm.form.lastName },
@@ -624,7 +629,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _c("has-error", {
-                                  attrs: { form: _vm.form, field: "name" }
+                                  attrs: { form: _vm.form, field: "lastName" }
                                 })
                               ],
                               1
