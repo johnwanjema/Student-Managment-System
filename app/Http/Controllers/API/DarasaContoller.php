@@ -88,9 +88,17 @@ class DarasaContoller extends Controller
      * @param  \App\Darasa  $darasa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Darasa $darasa)
+    public function update(Request $request, $id)
     {
-        //
+        $darasa = darasa::find($id);
+
+        if (is_null($darasa)) {
+            return api_response(false, null, 0, 'false','Class with that id does not exist', null);
+        }
+
+        $darasa->update($request->all());
+
+        return api_response(true, null, 0, 'success','successfully updated user', $darasa);
     }
 
     /**
@@ -99,8 +107,15 @@ class DarasaContoller extends Controller
      * @param  \App\Darasa  $darasa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Darasa $darasa)
+    public function destroy($id)
     {
-        //
+        $darasa = darasa::find($id);
+        if (is_null($darasa)) {
+            return api_response(false, null, 0, 'false','A Class with that id does not exist', null);
+        }
+
+        $darasa->delete();
+
+        return api_response(true, null, 0, 'success','successfully deleted class', null);
     }
 }

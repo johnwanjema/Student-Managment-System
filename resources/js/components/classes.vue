@@ -141,7 +141,7 @@ export default {
             }),
             currentPage: 1,
             perPage: 5,
-            fields: ['#','className',{key:'user.full_name' ,label:'Added By'},'status','created_at','actions'],
+            fields: ['#','className','classType',{key:'user.full_name' ,label:'Added By'},'status','created_at','actions'],
             filter: null,
             filterOn: [],
             totalRows:1,
@@ -179,12 +179,12 @@ export default {
         updateClass() {
             this.$Progress.start();
             this.form
-                .put("/api/user/" + this.form.id)
+                .put("/api/classes/" + this.form.id)
                 .then(() => {
                     $("#exampleModal").modal("hide");
                     Swal.fire("Updated", "Class has been updated.", "success");
                     this.$Progress.finish();
-                    Fire.$emit("After");
+                    this.loadClasses();
                 })
                 .catch(() => {
                     this.$Progress.fail();
@@ -209,10 +209,10 @@ export default {
                 // send request
                 if (result.value) {
                     this.form
-                        .delete("api/user/" + id)
+                        .delete("/api/classes/" + id)
                         .then(() => {
                             Swal.fire("Deleted!", "Class has been deleted.", "success");
-                            Fire.$emit("After");
+                            this.loadClasses();
                         })
                         .catch(() => {
                             Swal.fire("Huston we have a problem", "fail");

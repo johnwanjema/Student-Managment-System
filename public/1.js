@@ -151,7 +151,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       currentPage: 1,
       perPage: 5,
-      fields: ['#', 'className', {
+      fields: ['#', 'className', 'classType', {
         key: 'user.full_name',
         label: 'Added By'
       }, 'status', 'created_at', 'actions'],
@@ -194,13 +194,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.$Progress.start();
-      this.form.put("/api/user/" + this.form.id).then(function () {
+      this.form.put("/api/classes/" + this.form.id).then(function () {
         $("#exampleModal").modal("hide");
         Swal.fire("Updated", "Class has been updated.", "success");
 
         _this3.$Progress.finish();
 
-        Fire.$emit("After");
+        _this3.loadClasses();
       })["catch"](function () {
         _this3.$Progress.fail();
       });
@@ -225,9 +225,10 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         // send request
         if (result.value) {
-          _this4.form["delete"]("api/user/" + id).then(function () {
+          _this4.form["delete"]("/api/classes/" + id).then(function () {
             Swal.fire("Deleted!", "Class has been deleted.", "success");
-            Fire.$emit("After");
+
+            _this4.loadClasses();
           })["catch"](function () {
             Swal.fire("Huston we have a problem", "fail");
           });
