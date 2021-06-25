@@ -17,8 +17,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-         $students = Student::all();
-         return api_response(true,null, 200, 'success','successfully fetched all students', $students);
+        $students = Student::with('darasa')->get();
+        return api_response(true,null, 200, 'success','successfully fetched all students', $students);
     }
 
     /**

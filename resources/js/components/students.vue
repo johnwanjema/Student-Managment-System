@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <b-table responsive striped hover show-empty :items="users" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" @filtered="onFiltered" :per-page="perPage" :current-page="currentPage">
+                                            <b-table responsive striped hover show-empty :items="students" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" @filtered="onFiltered" :per-page="perPage" :current-page="currentPage">
                                                 <template v-slot:cell(#)="row">
                                                     <p>{{row.index + 1}}</p>
                                                 </template>
@@ -98,7 +98,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form @submit.prevent="editmode ? updateuser() : createuser()">
+                                    <form @submit.prevent="editmode ? updateStudent() : addStudent()">
                                         <div class="form-group">
                                             <input v-model="form.firstName" type="text" name="lastName" placeholder="First Name" class="form-control" :class="{ 'is-invalid': form.errors.has('firstName') }" />
                                             <has-error :form="form" field="firstName"></has-error>
@@ -112,16 +112,11 @@
                                             <has-error :form="form" field="email"></has-error>
                                         </div>
                                         <div class="form-group">
-                                            <select v-model="form.type" name="type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
-                                                <option value>Select Class</option>
-                                                <option value="Admin">Class 1</option>
-                                                <option value="User">Class 5</option>
+                                            <select v-model="form.classId" name="class" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('class') }">
+                                                <option disabled >Select Class</option>
+                                                <option v-for="(darasa ,i) in classes" :key="i" :value="darasa.id">{{darasa.className}}</option>
                                             </select>
                                             <has-error :form="form" field="type"></has-error>
-                                        </div>
-                                        <div class="form-group">
-                                            <input v-model="form.password" type="password" name="password" placeholder="Password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" />
-                                            <has-error :form="form" field="password"></has-error>
                                         </div>
                                         <div class="modal-footer">
                                             <button v-show="editmode" type="submit" class="btn btn-success">Update Student</button>
@@ -145,7 +140,7 @@ export default {
     data() {
         return {
             editmode: false,
-            users: {},
+            students: [],
             form: new Form({
                 id: "",
                 firstName: "",
@@ -154,14 +149,15 @@ export default {
                 type: "student",
                 bio: "",
                 password: "",
-                remember: false
+                classId: "",
             }),
             currentPage: 1,
             perPage: 5,
-            fields: ['#','full_name','email','class','created_at','actions'],
+            fields: ['#','full_name','email',{key:'darasa.className',label:'Class'},'created_at','actions'],
             filter: null,
             filterOn: [],
             totalRows:1,
+            classes:[]
         };
     },
 
@@ -169,7 +165,7 @@ export default {
         getResults(page = 1) {
             axios.get('api/user?page=' + page)
                 .then(response => {
-                    this.users = response.data;
+                    this.students = response.data;
                 });
         },
         openModal() {
@@ -177,23 +173,23 @@ export default {
             this.form.reset();
             $("#exampleModal").modal("show");
         },
-        createuser() {
+        addStudent() {
             this.$Progress.start();
             this.form
-                .post("/api/user")
+                .post("/api/students")
                 .then(() => {
                     toast.fire({
                         type: "success",
                         title: "User Created successfully"
                     });
-                    Fire.$emit("After");
                     $("#exampleModal").modal("hide");
+                    this.getStudents();
                 })
                 .catch(() => {});
             this.$Progress.finish();
         },
 
-        updateuser() {
+        updateStudent() {
             this.$Progress.start();
             this.form
                 .put("/api/user/" + this.form.id)
@@ -237,25 +233,29 @@ export default {
                 }
             });
         },
-        loadusers() {
-          axios.get('/api/user').then(({ data }) => {
-                this.users = data.data;
-                this.totalRows = this.users.length;
+        getStudents() {
+          axios.get('/api/students').then(({ data }) => {
+                this.students = data.data;
+                this.totalRows = this.students.length;
             }).catch((error) => {
                 console.log(error);
             });
         },
-         onFiltered(filteredItems) {
+        onFiltered(filteredItems) {
             this.totalRows = filteredItems.length;
             this.currentPage = 1
         },
+        geClasses() {
+          axios.get('/api/classes').then(({ data }) => {
+                this.classes = data.data;
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
     },
     mounted() {
-        this.loadusers();
-        Fire.$on("After", () => {
-            this.loadusers();
-        });
-
+        this.getStudents();
+        this.geClasses();
     }
 };
 </script>

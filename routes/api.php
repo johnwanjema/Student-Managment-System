@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::apiResources([
         'user' => 'API\UserController',
         'classes' => 'API\DarasaContoller',
+        'students' => 'API\StudentController',
     ]);
 });
 
