@@ -18,7 +18,7 @@ class DarasaContoller extends Controller
      */
     public function index()
     {
-            $classes = darasa::orderBY('created_at','DESC')->get();
+        $classes = darasa::orderBY('created_at','DESC')->with('user')->get();
         return api_response(true,null, 200, 'success','successfully fetched all classes', $classes);
 
     }

@@ -151,7 +151,10 @@ __webpack_require__.r(__webpack_exports__);
       }),
       currentPage: 1,
       perPage: 5,
-      fields: ['#', 'className', 'created_by', 'status', 'created_at', 'actions'],
+      fields: ['#', 'className', {
+        key: 'user.full_name',
+        label: 'Added By'
+      }, 'status', 'created_at', 'actions'],
       filter: null,
       filterOn: [],
       totalRows: 1
