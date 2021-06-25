@@ -14,13 +14,13 @@ class AddClassStudentsTable extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->integer('class')->unsigned()->index();
-            $table->foreign('class')->references('id')->on('darasas');
+            $table->integer('classId')->unsigned()->index();
+            $table->foreign('classId')->references('id')->on('darasas');
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.  
      *
      * @return void
      */
