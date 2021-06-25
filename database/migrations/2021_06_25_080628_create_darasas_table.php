@@ -16,8 +16,10 @@ class CreateDarasasTable extends Migration
         Schema::create('darasas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('className');
+            $table->string('classType');
             $table->integer('addedBy')->unsigned()->index();
             $table->foreign('addedBy')->references('id')->on('users');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

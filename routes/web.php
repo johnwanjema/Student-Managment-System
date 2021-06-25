@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +27,7 @@ Auth::routes();
 Route::get(
     '/admin/{any?}',
     function () {
-        // return Auth::user()->email;
+        // return Auth::user();
         if (Auth::user() == null) {
             return redirect()->route('login');
         } else {

@@ -1,16 +1,9 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 import { Form, HasError, AlertError } from 'vform'
 
-import moment from 'moment';
 import Gate from './gate'
 
 window.Fire = new Vue();
@@ -72,16 +65,28 @@ import router from './routes.js';
 window.router = router;
 window.Fire = new Vue();
 
-
-Vue.filter('mydate', function (created) {
-  return moment(created).format("MMM Do YY");
-})
-
 Vue.filter('capitalize', function (value) {
   if (!value) return ''
   value = value.toString()
   return value.charAt(0).toUpperCase() + value.slice(1)
 })
+
+//===momentjs ========
+import moment from 'moment';
+
+Vue.filter('filterDate', function (myDate) {
+  return moment(new Date(myDate)).format('Do MMMM YYYY, HH:mm:ss A');
+});
+
+Vue.filter('filterDateOnly', function (myDate) {
+  return moment(new Date(myDate)).format('Do MMMM YYYY');
+});
+
+
+
+Vue.filter('filterHumanDate', function (myDate) {
+  return moment(new Date(myDate)).format('Do MMMM YYYY, h:mm:ss A');
+});
 
 
 
