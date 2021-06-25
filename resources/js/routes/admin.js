@@ -2,10 +2,9 @@ const dashboard = () => import('../components/dashboard');
 const profile = () => import('../components/profile');
 const students = () => import('../components/user');
 const results = () => import('../components/results');
-const search = () => import('../components/search');
-const searchresults = () => import('../components/searchresults');
 const studentdetails = () => import('../components/studentdetails');
 const classes = () => import('../components/classes');
+const example = () => import('../components/example');
 
 export default [
     { path: '/admin', redirect: { name: 'dashboard' }},
@@ -38,5 +37,10 @@ export default [
         path: '/admin/classes',
         component: classes,
         name: 'classes',
+    },
+    {
+        path: '/admin/example',
+        component: example,
+        name: 'example',
     },
 ]
