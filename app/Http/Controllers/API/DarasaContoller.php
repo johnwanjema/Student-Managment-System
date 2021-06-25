@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Darasa;
+use App\darasa;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class DarasaContoller extends Controller
 {
@@ -14,7 +18,9 @@ class DarasaContoller extends Controller
      */
     public function index()
     {
-        //
+            $classes = darasa::orderBY('created_at','DESC')->get();
+        return api_response(true,null, 200, 'success','successfully fetched all classes', $classes);
+
     }
 
     /**
@@ -22,9 +28,9 @@ class DarasaContoller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -35,7 +41,22 @@ class DarasaContoller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'className' => 'required',
+            'classType' => 'required',
+        ]);
+
+        $darasa = new darasa();
+        $darasa->className = $request['className'];
+        $darasa->classType = $request['classType'];
+        $darasa->addedBy = Auth::id();
+        
+        if($darasa->save()){
+            return api_response(true, null, 200, 'success','successfully added the Class',$darasa);
+        }else{
+            return api_response(false, null, 500, 'failed','error adding Class',$request->all());
+        }
+
     }
 
     /**

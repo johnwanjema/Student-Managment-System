@@ -59,7 +59,9 @@
                                                 <template v-slot:cell(#)="row">
                                                     <p>{{row.index + 1}}</p>
                                                 </template>
-
+                                                <template v-slot:cell(created_at)="row">
+                                                    <p>{{row.item.created_at |filterDateOnly}}</p>
+                                                </template>
                                                 <template v-slot:cell(actions)="row">
                                                     <b-button class="btn btn-sm" variant="primary" @click="editmodal(row.item)"> Edit</b-button>
                                                     <b-button class="btn btn-sm" variant="danger" @click="deleteClass(row.item.id)">Delete</b-button>
@@ -90,8 +92,8 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Add new Student</h5>
-                                    <h5 v-show="editmode" class="modal-title" id="exampleModalLabel">Update Student</h5>
+                                    <h5 v-show="!editmode" class="modal-title" id="exampleModalLabel">Add new Class</h5>
+                                    <h5 v-show="editmode" class="modal-title" id="exampleModalLabel">Update Class</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -99,33 +101,21 @@
                                 <div class="modal-body">
                                     <form @submit.prevent="editmode ? updateClass() : createClass()">
                                         <div class="form-group">
-                                            <input v-model="form.name" type="text" name="name" placeholder="First Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
-                                            <has-error :form="form" field="name"></has-error>
+                                            <input v-model="form.className" type="text" name="name" placeholder="Class Name" class="form-control" :class="{ 'is-invalid': form.errors.has('className') }" />
+                                            <!-- <has-error :form="className" field="className"></has-error> -->
                                         </div>
                                         <div class="form-group">
-                                            <input v-model="form.lastName" type="text" name="name" placeholder="Last Name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" />
-                                            <has-error :form="form" field="name"></has-error>
-                                        </div>
-                                        <div class="form-group">
-                                            <input v-model="form.email" type="email" name="email" placeholder="Email" class="form-control" :class="{ 'is-invalid': form.errors.has('email') }" />
-                                            <has-error :form="form" field="email"></has-error>
-                                        </div>
-                                        <div class="form-group">
-                                            <select v-model="form.type" name="type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
-                                                <option value>Select Class</option>
-                                                <option value="Admin">Class 1</option>
-                                                <option value="User">Class 5</option>
+                                            <select v-model="form.classType" name="type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('classType') }">
+                                                <option value>Select Class Type</option>
+                                                <option value="primary">Primary</option>
+                                                <option value="secondary">Secondary</option>
                                             </select>
-                                            <has-error :form="form" field="type"></has-error>
-                                        </div>
-                                        <div class="form-group">
-                                            <input v-model="form.password" type="password" name="password" placeholder="Password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" />
-                                            <has-error :form="form" field="password"></has-error>
+                                            <!-- <has-error :form="classType" field="classType"></has-error> -->
                                         </div>
                                         <div class="modal-footer">
-                                            <button v-show="editmode" type="submit" class="btn btn-success">Update Student</button>
-                                            <button v-show="!editmode" type="submit" class="btn btn-primary">Create Student</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            <button v-show="editmode" type="submit" class="btn btn-success">Update Class</button>
+                                            <button v-show="!editmode" type="submit" class="btn btn-primary">Create Class</button>
                                         </div>
                                     </form>
                                 </div>
@@ -146,12 +136,8 @@ export default {
             users: [],
             form: new Form({
                 id: "",
-                name: "",
-                email: "",
-                type: "",
-                bio: "",
-                password: "",
-                remember: false
+                className: "",
+                classType: "",
             }),
             currentPage: 1,
             perPage: 5,
@@ -177,13 +163,13 @@ export default {
         createClass() {
             this.$Progress.start();
             this.form
-                .post("/api/user")
+                .post("/api/classes")
                 .then(() => {
                     toast.fire({
                         type: "success",
                         title: "Class Created successfully"
                     });
-                    Fire.$emit("After");
+                    this.loadClasses();
                     $("#exampleModal").modal("hide");
                 })
                 .catch(() => {});
@@ -235,7 +221,7 @@ export default {
             });
         },
         loadClasses() {
-          axios.get('/api/user').then(({ data }) => {
+          axios.get('/api/classes').then(({ data }) => {
                 this.users = data.data;
                 this.totalRows = this.users.length;
             }).catch((error) => {
@@ -248,11 +234,7 @@ export default {
         },
     },
     mounted() {
-        // this.loadClasses();
-        Fire.$on("After", () => {
-            this.loadClasses();
-        });
-
+        this.loadClasses();
     }
 };
 </script>
