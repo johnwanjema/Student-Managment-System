@@ -1,8 +1,7 @@
 const dashboard = () => import('../components/dashboard');
 const profile = () => import('../components/profile');
-const students = () => import('../components/user');
+const students = () => import('../components/students');
 const results = () => import('../components/results');
-const studentdetails = () => import('../components/studentdetails');
 const classes = () => import('../components/classes');
 const example = () => import('../components/example');
 
@@ -27,11 +26,6 @@ export default [
         path: '/admin/results',
         component: results,
         name: 'results',
-    },
-    {
-        path: '/admin/studentdetails',
-        component: studentdetails,
-        name: 'studentdetails',
     },
     {
         path: '/admin/classes',
