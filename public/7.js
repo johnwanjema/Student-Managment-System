@@ -50,12 +50,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
  // solves problem with Vite
 
 
@@ -63,7 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    FullCalendar: _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_1__["default"] // make the <FullCalendar> tag available
+    'full-calendar': _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_1__["default"] // make the <FullCalendar> tag available
 
   },
   data: function data() {
@@ -71,24 +65,33 @@ __webpack_require__.r(__webpack_exports__);
       calendarOptions: {
         plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_2__["default"]],
         initialView: 'dayGridMonth',
-        weekends: false,
-        // initial value,
-        events: [{
-          title: 'event 1',
-          date: '2021-06-28'
-        }, {
-          title: 'event 2',
-          date: '2019-04-02'
-        }]
+        allDaySlot: false,
+        height: 1000,
+        events: [// { title: 'event 1', date: '2021-06-28' },
+          // { title: 'event 2', date: '2019-04-02' }
+        ],
+        headerToolbar: {
+          right: 'dayGridMonth,dayGridWeek,dayGridDay',
+          center: 'title',
+          left: 'prev, next, today'
+        }
       }
     };
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
+  created: function created() {},
   methods: {
     toggleWeekends: function toggleWeekends() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // toggle the boolean!
+    },
+    updateEvents: function updateEvents() {
+      console.log('mounted.');
+      this.calendarOptions.events = [{
+        title: 'event 1',
+        date: '2021-06-28'
+      }, {
+        title: 'event 2',
+        date: '2021-06-29'
+      }];
     }
   }
 });
@@ -123,22 +126,9 @@ var render = function() {
               "div",
               { staticClass: "col-md-12" },
               [
-                _c("button", { on: { click: _vm.toggleWeekends } }, [
-                  _vm._v("toggle weekends")
-                ]),
-                _vm._v(" "),
-                _c("FullCalendar", {
+                _c("full-calendar", {
                   ref: "fullCalendar",
-                  attrs: {
-                    options: _vm.calendarOptions,
-                    allDaySlot: false,
-                    height: 100,
-                    header: {
-                      left: "prev, next today",
-                      center: "title",
-                      right: "dayGridMonth,dayGridWeek,timeGridDay"
-                    }
-                  }
+                  attrs: { options: _vm.calendarOptions }
                 })
               ],
               1

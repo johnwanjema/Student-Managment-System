@@ -27,16 +27,10 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-md-12">
-                        <button @click="toggleWeekends">toggle weekends</button>
-                        <!-- <FullCalendar :options="calendarOptions" /> -->
-                        <FullCalendar ref="fullCalendar" :options="calendarOptions" :allDaySlot="false" :height="100" :header="{
-                                left: 'prev, next today',
-                                center: 'title',
-                                right: 'dayGridMonth,dayGridWeek,timeGridDay'
-                            }" />
+                        <full-calendar ref="fullCalendar" :options="calendarOptions" />
                     </div>
                 </div>
-              
+    
             </div>
         </section>
     </div>
@@ -50,27 +44,37 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 
 export default {
     components: {
-        FullCalendar // make the <FullCalendar> tag available
+        'full-calendar': FullCalendar // make the <FullCalendar> tag available
     },
     data() {
         return {
             calendarOptions: {
                 plugins: [dayGridPlugin],
                 initialView: 'dayGridMonth',
-                weekends: false, // initial value,
+                allDaySlot: false,
+                height: 1000,
                 events: [
-                    { title: 'event 1', date: '2021-06-28' },
-                    { title: 'event 2', date: '2019-04-02' }
-                ]
-            }
+                    // { title: 'event 1', date: '2021-06-28' },
+                    // { title: 'event 2', date: '2019-04-02' }
+                ],
+                headerToolbar: { right: 'dayGridMonth,dayGridWeek,dayGridDay', center: 'title',left: 'prev, next, today', },
+            },
         }
     },
-    mounted() {
-        console.log('Component mounted.')
+    created() {
+       
+
     },
     methods: {
         toggleWeekends: function() {
             this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
+        },
+        updateEvents() {
+             console.log('mounted.')
+            this.calendarOptions.events = [
+                { title: 'event 1', date: '2021-06-28' },
+                { title: 'event 2', date: '2021-06-29' }
+            ]
         }
     }
 }

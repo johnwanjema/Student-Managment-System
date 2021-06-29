@@ -109,7 +109,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -177,7 +176,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "inner" }, [
                     _c("h3", [_vm._v("150")]),
                     _vm._v(" "),
-                    _c("p", [_vm._v("New Orders")])
+                    _c("p", [_vm._v("Classes")])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "icon" }, [
@@ -205,7 +204,7 @@ var staticRenderFns = [
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Bounce Rate")])
+                    _c("p", [_vm._v("Students ")])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "icon" }, [
