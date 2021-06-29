@@ -4,6 +4,7 @@ const students = () => import('../components/students');
 const results = () => import('../components/results');
 const classes = () => import('../components/classes');
 const example = () => import('../components/example');
+const fullCalender = () => import('../components/fullCalendar');
 
 export default [
     { path: '/admin', redirect: { name: 'dashboard' }},
@@ -36,5 +37,10 @@ export default [
         path: '/admin/example',
         component: example,
         name: 'example',
+    },
+    {
+        path: '/admin/fullCalender',
+        component: fullCalender,
+        name: 'fullCalender',
     },
 ]
