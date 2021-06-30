@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth:api'], function() {
         'classes' => 'API\DarasaContoller',
         'students' => 'API\StudentController',
     ]);
+    // getDashboardStats
+    Route::get('getDashboardStats', 'API\UserController@dashboard');
 });
 
 

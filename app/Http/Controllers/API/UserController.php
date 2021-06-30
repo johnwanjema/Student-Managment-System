@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\darasa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\student;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -134,5 +136,16 @@ class UserController extends Controller
             $users = User::latest()->paginate(5);
         }
         return $users;
+    }
+
+    public function dashboard(){
+        $data = [];
+        $classes = darasa::All()->count();
+        $students = student::All()->count();
+        $data = [     
+                'classes'=> $classes,
+                'students'=> $classes,
+            ];
+        return api_response(true, null, 0, 'success','successfully deleted student', $data);
     }
 }

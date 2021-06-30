@@ -30,6 +30,7 @@
         "@fullcalendar/vue3": "^5.8.0",
         "bootstrap-vue": "^2.21.2",
         "bulma": "^0.7.5",
+        "chart.js": "^3.4.0",
         "laravel-vue-pagination": "^2.3.0",
         "moment": "^2.24.0",
         "sweetalert2": "^8.17.3",
