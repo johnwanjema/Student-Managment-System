@@ -27,66 +27,54 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{classes}}</h3>
     
-                                <p>New Orders</p>
+                                <p>Classes</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="fas fa-building"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
-    
-                                <p>Bounce Rate</p>
+                                <h3>{{students}}</h3>
+                                <p>Students </p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="fas fa-users"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{results}}</h3>
     
-                                <p>User Registrations</p>
+                                <p>Results</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="fas fa-records"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>65</h3>
-    
-                                <p>Unique Visitors</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <canvas id="students-chart" width="400" height="200"></canvas> -->
+                          <canvas id="payments-chart" width="400" height="100"></canvas>
                     </div>
-                    <!-- ./col -->
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->
@@ -100,9 +88,91 @@
 </template>
 
 <script>
+import Chart from 'chart.js';
 export default {
+    data(){
+        return{
+            classes:0,
+            students:0,
+            results:0.
+        }
+    },
+    methods:{
+        getDashboardData(){
+            axios.get('/api/getDashboardStats').then(({ data }) => {
+                this.classes = data.data.classes;
+                this.students = data.data.students;
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+        getStudentsPerMonth(){
+             axios.get('/api/studentsPerMonth').then(({ data }) => {
+                // console.log(data.data);
+                var months = [];
+                var total = [];
+                for (var i = 0; i < data.data.length; i++) {
+                    months.push(data.data[i].month);
+                    total.push(data.data[i].total);
+                };
+                var data = total;
+                var labels = months;
+                const data1 = {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{ // one line graph
+                            label: 'Earnings Per Month',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }, ]
+                    },
+                    options: {
+                        responsive: true,
+                        lineTension: 1,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    padding: 25,
+                                }
+                            }]
+                        }
+                    }
+                }
+                this.createChart('payments-chart', data1)
+            }).catch((error) => {
+                console.log(error);
+            })
+        },
+        createChart(chartId, chartData) {
+            const ctx = document.getElementById(chartId);
+            const myChart = new Chart(ctx, {
+                type: chartData.type,
+                data: chartData.data,
+                options: chartData.options,
+            });
+        },
+    },
     mounted() {
-        console.log('Component mounted.')
+        this.getDashboardData();
+        this.getStudentsPerMonth();
     }
 }
 </script>

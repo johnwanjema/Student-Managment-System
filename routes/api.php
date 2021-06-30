@@ -23,8 +23,12 @@ Route::group(['middleware' => 'auth:api'], function() {
         'classes' => 'API\DarasaContoller',
         'students' => 'API\StudentController',
     ]);
+    // getDashboardStats
+    Route::get('getDashboardStats', 'API\UserController@dashboard');
 });
 
+// paymentsPerMonth
+Route::get('studentsPerMonth', 'API\StudentController@studentsPerMonth');
 
 
 Route::get('profile', 'API\UserController@profile')->name('home');
