@@ -69,6 +69,13 @@
                     </div>
                     <!-- ./col -->
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <canvas id="students-chart" width="400" height="200"></canvas> -->
+                          <canvas id="payments-chart" width="400" height="100"></canvas>
+                    </div>
+                </div>
                 <!-- /.row -->
                 <!-- Main row -->
     
@@ -81,6 +88,7 @@
 </template>
 
 <script>
+import Chart from 'chart.js';
 export default {
     data(){
         return{
@@ -97,10 +105,74 @@ export default {
             }).catch((error) => {
                 console.log(error);
             });
-        }
+        },
+        getStudentsPerMonth(){
+             axios.get('/api/studentsPerMonth').then(({ data }) => {
+                // console.log(data.data);
+                var months = [];
+                var total = [];
+                for (var i = 0; i < data.data.length; i++) {
+                    months.push(data.data[i].month);
+                    total.push(data.data[i].total);
+                };
+                var data = total;
+                var labels = months;
+                const data1 = {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{ // one line graph
+                            label: 'Earnings Per Month',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }, ]
+                    },
+                    options: {
+                        responsive: true,
+                        lineTension: 1,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    padding: 25,
+                                }
+                            }]
+                        }
+                    }
+                }
+                this.createChart('payments-chart', data1)
+            }).catch((error) => {
+                console.log(error);
+            })
+        },
+        createChart(chartId, chartData) {
+            const ctx = document.getElementById(chartId);
+            const myChart = new Chart(ctx, {
+                type: chartData.type,
+                data: chartData.data,
+                options: chartData.options,
+            });
+        },
     },
-    created() {
+    mounted() {
         this.getDashboardData();
+        this.getStudentsPerMonth();
     }
 }
 </script>

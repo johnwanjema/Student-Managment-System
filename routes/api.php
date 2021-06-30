@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('getDashboardStats', 'API\UserController@dashboard');
 });
 
+// paymentsPerMonth
+Route::get('studentsPerMonth', 'API\StudentController@studentsPerMonth');
 
 
 Route::get('profile', 'API\UserController@profile')->name('home');

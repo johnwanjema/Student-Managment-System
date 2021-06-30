@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -97,5 +98,25 @@ class StudentController extends Controller
         $student->delete();
 
         return api_response(true, null, 0, 'success','successfully deleted student', null);
+    }
+
+
+    public function studentsPerMonth()
+    {
+        $months_array = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        $totals = array();
+        foreach ($months_array as $month) {
+            $total = 0;
+            $item = array();
+            // get payments in a month
+            $students = student::whereYear('created_at', Carbon::now()->format('Y'))->whereMonth('created_at', $month)->get()->count();
+
+            $item['month'] = date("F", mktime(0, 0, 0, $month, 1));
+            $item['total'] = $students;
+            array_push($totals, $item);
+        }
+
+        return api_response(true,null, 200, 'error','successfully fetched students count', $totals);
+
     }
 }
