@@ -32,7 +32,7 @@
         "bulma": "^0.7.5",
         "chart.js": "^2.9.4",
         "laravel-vue-pagination": "^2.3.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "sweetalert2": "^8.17.3",
         "vform": "^1.0.1",
         "vue-progressbar": "^0.7.5",
